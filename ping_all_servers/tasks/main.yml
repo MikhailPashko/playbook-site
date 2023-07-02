@@ -1,0 +1,5 @@
+---
+# tasks file for ping_all_servers
+
+- name: Ping all servers
+  ping:

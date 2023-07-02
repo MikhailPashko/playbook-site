@@ -1,0 +1,8 @@
+---
+- name: Ping, Install Apache and Upload Web Site
+  hosts: all
+  become: yes
+
+  roles:
+     - { role:  ping_all_servers }
+     - { role: deploy_apache_web, when: ansible_system == "Linux" }
