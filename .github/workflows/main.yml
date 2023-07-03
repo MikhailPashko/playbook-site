@@ -11,7 +11,10 @@ jobs:
     steps:
     - name: Print Hello Message
       run : echo "Hello World from Testing job" 
-
+    - name: Git clone Repo
+      uses: actions/checkout@v1
+    - name: List curent folder
+      run: ls -la
 
 
   my_deploy:
@@ -19,4 +22,10 @@ jobs:
     needs: [my_testing]
     steps:
     - name: Print Hello Message
-      run : echo "Hello World from Deploy job" 
+    run : echo "Hello World from Deploy job" 
+    
+    - name: AWS Version
+     run: aws --version
+     
+    - name: zip available
+     run: zip
