@@ -8,6 +8,7 @@ on:
 jobs:
   my_testing:
     runs-on: ubuntu-latest
+    
     steps:
     - name: Print Hello Message
       run : echo "Hello World from Testing job" 
@@ -22,10 +23,10 @@ jobs:
     
     steps:
     - name: Print Hello Message
-    run : echo "Hello World from Deploy job" 
+      run : echo "Hello World from Deploy job" 
     
     - name: AWS Version
-     run: aws --version
+      run: aws --version
      
     - name: zip available
-     run: zip
+      run: zip
