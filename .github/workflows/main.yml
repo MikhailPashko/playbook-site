@@ -1,4 +1,6 @@
 name: GitHubActions1
+env: 
+  DEPLOY_PACKAGE_NAME : "Playbook_ansible_and_resume_${{ github.sha }}.zip"
 
 on: 
   push:
@@ -6,33 +8,33 @@ on:
     - develop
     
 jobs:
-  my_testing:
-    runs-on: ubuntu-latestds
+  clone_and_zip_repo:
+    runs-on: ubuntu-latest
     
     steps:
-    - name: Print Hello Message
-      run : echo "Hello World from Testing job" 
-    - name: Git clone Repo
-      uses: actions/checkout@v1
+    
     - name: List curent folder
       run: ls -la
+    
+    - name: Git clone Repo
+      uses: actions/checkout@v1
+      
+    - name: List curent folder
+      run: ls -la
+      
+    - name: Create ZIP package Repo
+      run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
+      
+    - name: List curent folder
+      run: ls -la
+      
       
   my_deploy:
     runs-on: ubuntu-latest
     needs: [my_testing]
-    env:
-      VAR1: "Job Var 1"
-      VAR2: "Job Var 2"
+    
     steps:
-    - name: Print Hello Message
-      run : echo "Hello World from Deploy job" 
-    - name: Print env vars
-      run: |
-        echo "Var1 = ${{ env.VAR1 }}"
-        echo "Var2 = ${{ env.VAR2 }}"
-        echo "Var2 = $LOCAL_VAR"
-      env:
-        LOCAL_VAR: "Super local var"
+      
     - name: AWS Version
       run: aws --version
      
