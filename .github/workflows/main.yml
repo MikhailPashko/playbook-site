@@ -1,4 +1,4 @@
-name: WEB-SITE Playbook CI
+name: WEB_Site_Servers CI
 env: 
   DEPLOY_PACKAGE_NAME : "Playbook_ansible_and_resume_${{ github.sha }}.zip"
 
