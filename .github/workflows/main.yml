@@ -16,11 +16,11 @@ jobs:
     - name: Git clone Repo
       uses: actions/checkout@v1
       
-    - name: List curent folder
-      run: ls -la
-      
     - name: Create ZIP package Repo
       run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
+      
+    - name: List curent folder
+      run: ls -la
       
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
@@ -29,5 +29,5 @@ jobs:
           SOURCE: "${{ env.DEPLOY_PACKAGE_NAME }}"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-   #      TARGET: ${{ secrets.REMOTE_TARGET }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: "/dist/, /node_modules/"
