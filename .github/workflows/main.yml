@@ -31,7 +31,7 @@ jobs:
       
   my_deploy:
     runs-on: ubuntu-latest
-    needs: [my_testing]
+    needs: [clone_and_zip_repo]
     
     steps:
       
